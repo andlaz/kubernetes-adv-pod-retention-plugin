@@ -1,0 +1,7 @@
+unclassified:
+  advPodRetention:
+    manageCleanup: true
+    cleanupConfiguration:
+      recurrenceMinutes: 5
+      namespaces:
+        - name: "jenkins"

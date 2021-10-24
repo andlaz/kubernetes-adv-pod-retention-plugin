@@ -1,0 +1,11 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+    <f:entry field="recurrenceMinutes" title="${%Recurrence minutes}">
+        <f:number/>
+    </f:entry>
+    <f:entry field="namespaces" title="${%Target namespaces}">
+        <f:repeatableProperty minimum="1" field="namespaces">
+            <f:block> <div align="right"> <f:repeatableDeleteButton /> </div> </f:block>
+        </f:repeatableProperty>
+    </f:entry>
+</j:jelly>
