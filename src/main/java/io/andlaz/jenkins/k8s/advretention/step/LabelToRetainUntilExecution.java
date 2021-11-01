@@ -41,9 +41,12 @@ public class LabelToRetainUntilExecution extends GeneralNonBlockingStepExecution
 
                 getContext().onSuccess(null);
 
+            } else {
+
+                getContext().onFailure(new IllegalStateException("No pod detected"));
+
             }
 
-            getContext().onFailure(new IllegalStateException("No pod detected"));
 
         });
 
