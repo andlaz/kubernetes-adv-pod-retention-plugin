@@ -12,8 +12,8 @@ import java.util.List;
 
 public class CleanupConfiguration extends AbstractDescribableImpl<CleanupConfiguration> {
 
-    private Integer recurrenceMinutes = 5;
-    private List<CleanupTargetNamespace> namespaces = Collections.emptyList();
+    private Integer recurrenceMinutes = 1;
+    private List<CleanupTargetNamespace> namespaces = Collections.singletonList(new CleanupTargetNamespace("jenkins"));
 
     @Extension
     @Symbol("cleanup")
