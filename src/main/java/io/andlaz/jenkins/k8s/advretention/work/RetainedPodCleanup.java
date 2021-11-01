@@ -39,7 +39,7 @@ public class RetainedPodCleanup extends AperiodicWork {
         this.clouds = clouds;
         this.config = config;
 
-        LOGGER.log(Level.INFO, "Configured with clouds " + clouds);
+        LOGGER.log(Level.FINEST, "Configured with clouds " + clouds);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class RetainedPodCleanup extends AperiodicWork {
     @Override
     protected void doAperiodicRun() {
 
-        LOGGER.log(Level.FINE, "Starting run");
+        LOGGER.log(Level.FINEST, "Starting run");
         for (KubernetesCloud cloud : clouds) {
 
             try {
@@ -69,7 +69,7 @@ public class RetainedPodCleanup extends AperiodicWork {
                 List<Pod> podsToCleanUp = config.getCleanupConfiguration().getNamespaces().stream()
                         .map(namespace -> namespace.getName())
                         .flatMap(namespace -> {
-                                    LOGGER.log(Level.FINE, "Looking for Pods past their retention in namespace " + namespace + ", " + cloud);
+                                    LOGGER.log(Level.FINEST, "Looking for Pods past their retention in namespace " + namespace + ", " + cloud);
                                     return client.
                                             pods().inNamespace(namespace.toString())
                                             .withLabel(WhenLabeledToDoSo.LABEL_RETAIN)
