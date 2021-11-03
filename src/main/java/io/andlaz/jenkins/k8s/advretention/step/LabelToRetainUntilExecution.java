@@ -10,7 +10,7 @@ import org.csanchez.jenkins.plugins.kubernetes.KubernetesSlave;
 import org.jenkinsci.plugins.workflow.steps.GeneralNonBlockingStepExecution;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 
-import java.time.ZonedDateTime;
+import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class LabelToRetainUntilExecution extends GeneralNonBlockingStepExecution {
@@ -36,7 +36,7 @@ public class LabelToRetainUntilExecution extends GeneralNonBlockingStepExecution
                         new PodBuilder(pod).editOrNewMetadata()
                                 .addToLabels(WhenLabeledToDoSo.LABEL_RETAIN, "")
                                 .addToAnnotations(WhenLabeledToDoSo.ANNOTATION_RETAIN_UNTIL,
-                                        ZonedDateTime.now().plusMinutes(step.getMinutes()).format(DateTimeFormatter.ISO_DATE_TIME)).endMetadata().build()
+                                        OffsetDateTime.now().plusMinutes(step.getMinutes()).format(DateTimeFormatter.ISO_DATE_TIME)).endMetadata().build()
                 );
 
                 getContext().onSuccess(null);
