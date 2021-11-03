@@ -36,7 +36,7 @@ public class LabelToRetainUntilExecution extends GeneralNonBlockingStepExecution
                         new PodBuilder(pod).editOrNewMetadata()
                                 .addToLabels(WhenLabeledToDoSo.LABEL_RETAIN, "")
                                 .addToAnnotations(WhenLabeledToDoSo.ANNOTATION_RETAIN_UNTIL,
-                                        OffsetDateTime.now().plusMinutes(step.getMinutes()).format(DateTimeFormatter.ISO_DATE_TIME)).endMetadata().build()
+                                        OffsetDateTime.now().plusMinutes(step.getMinutes()).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)).endMetadata().build()
                 );
 
                 getContext().onSuccess(null);

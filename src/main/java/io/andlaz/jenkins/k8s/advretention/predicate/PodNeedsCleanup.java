@@ -12,7 +12,7 @@ public class PodNeedsCleanup implements Predicate<Pod> {
     @Override
     public boolean test(Pod pod) {
 
-        return OffsetDateTime.parse(pod.getMetadata().getAnnotations().get(WhenLabeledToDoSo.ANNOTATION_RETAIN_UNTIL), DateTimeFormatter.ISO_DATE_TIME).isAfter(OffsetDateTime.now());
+        return OffsetDateTime.parse(pod.getMetadata().getAnnotations().get(WhenLabeledToDoSo.ANNOTATION_RETAIN_UNTIL), DateTimeFormatter.ISO_OFFSET_DATE_TIME).isBefore(OffsetDateTime.now());
 
     }
 }
