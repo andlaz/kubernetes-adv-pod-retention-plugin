@@ -1,5 +1,6 @@
 package io.andlaz.jenkins.k8s.advretention;
 
+import io.fabric8.kubernetes.api.model.Pod;
 import org.csanchez.jenkins.plugins.kubernetes.KubernetesCloud;
 import org.junit.Test;
 
