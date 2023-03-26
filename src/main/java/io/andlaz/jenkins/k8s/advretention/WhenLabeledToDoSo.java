@@ -14,6 +14,7 @@ import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -36,7 +37,9 @@ public class WhenLabeledToDoSo extends PodRetention implements Serializable {
     public static final String ANNOTATION_RETAIN_UNTIL = "andlaz.io/retain-until";
 
     @Override
-    public boolean shouldDeletePod(KubernetesCloud cloud, Pod pod) {
+    public boolean shouldDeletePod(KubernetesCloud cloud, Supplier<Pod> podSupplier) {
+        Pod pod = podSupplier.get();
+
         try {
             LOGGER.log(Level.FINEST, "Looking at {0} for label {1}", new Object[]{pod, WhenLabeledToDoSo.LABEL_RETAIN});
             return new PodHasRetain().test(pod) == false;

@@ -2,11 +2,11 @@ package io.andlaz.jenkins.k8s.advretention;
 
 import io.fabric8.kubernetes.api.model.ObjectMeta;
 import io.fabric8.kubernetes.api.model.Pod;
-
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Supplier;
 
 import static org.mockito.Mockito.*;
 
@@ -18,14 +18,20 @@ public abstract class AdvancedRetentionPoliciesTestSuite {
         }};
     }
 
-    protected Pod stubPodWithLabels(Map<String, String> labels) {
+    protected Supplier<Pod> stubPodWithLabels(Map<String, String> labels) {
+        return new Supplier<Pod>() {
 
-        ObjectMeta meta = mock(ObjectMeta.class);
-        Pod pod = mock(Pod.class);
-        when(pod.getMetadata()).thenReturn(meta);
-        when(meta.getLabels()).thenReturn(labels);
+            @Override
+            public Pod get() {
+                ObjectMeta meta = mock(ObjectMeta.class);
+                Pod pod = mock(Pod.class);
+                when(pod.getMetadata()).thenReturn(meta);
+                when(meta.getLabels()).thenReturn(labels);
 
-        return pod;
+                return pod;
+            }
+        };
+
 
     }
 
